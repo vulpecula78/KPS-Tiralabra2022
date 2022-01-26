@@ -1,0 +1,11 @@
+
+scissors cuts paper = Sakset silppuaa paperin
+Paper covers rock = paperi peittää kiven
+Rock crushes lizard = kivi murskaa liskon
+Lizard poisons Spock = Lisko myrkyttää Spockin
+Spock smashes scissors = Spock rikkoo sakset
+Scissors decapitates lizard = Sakset leikkaavat liskon kaulan 
+lizard eats paper = Lisko syö paperin
+Paper disproves Spock = Paperi kiistää Spockin
+Spock vaporizes rock = Spock höyrystää kiven
+Rock crushes scissor = Kivi murskaa sakset!

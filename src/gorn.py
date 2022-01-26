@@ -1,5 +1,6 @@
 import sys
 from ai_random import AiRandom
+from ai_classical import AiClassical
 from gorn_ui import GornUi
 
 
@@ -7,7 +8,9 @@ class Gorn:
     def __init__(self):
         self._ai = None
         self._ai_random = AiRandom()
+        self._ai_classic = AiClassical()
         self._ui = GornUi()
+        self._items = {"k":5, "s":3, "p":1}
 
     def main(self):
         while True:
@@ -19,6 +22,9 @@ class Gorn:
                 self.statistics()
             if selection == "1":
                 self._ai = self._ai_random
+                self.kps_peli()
+            if selection == "2":
+                self._ai =  self._ai_classic
                 self.kps_peli()
 
     def kps_peli(self):
@@ -35,26 +41,30 @@ class Gorn:
             if siirto == "x":
                 break
 
-            if siirto == ai_siirto:
-                result = 0
+            winner = self._items[siirto] - self._items[ai_siirto]
+            if winner == 0:
                 tasapelit += 1
-            elif (siirto == "k" and ai_siirto == "p") or (siirto == "p" and ai_siirto == "s"):
-                result = 1
-                ai_voitot += 1
-            elif  (siirto == "s" and ai_siirto == "k"):
-                result = 1
-                ai_voitot += 1
-            else:
+                result = 0
+            elif winner in (2, -4):
                 voitot += 1
                 result = -1
+            else:
+                ai_voitot += 1
+                result = 1
 
             self._ai.add_round(siirto, ai_siirto, result)
             self._ui.move(siirto, ai_siirto, result)
 
 
     def statistics(self):
-        history = self._ai.get_history()
+        '''Viimeisempänä käytetyn ai:n tilastot. '''
+        try:
+            history, probabilities = self._ai.get_history()
+        except AttributeError:
+            print("Virhe! Tilastoja ei vielä ole.\n")
+            return
 
+        print(probabilities)
         games_played = len(history[0])
         player_won = history[2].count(-1)
         ai_won = history[2].count(1)

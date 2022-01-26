@@ -11,10 +11,11 @@ class AiRandom:
     def choice(self):
         return random.choice(self._siirto)
 
+    def get_history(self):
+        #palauttaa historian, todennäköisyydet
+        return self._history, 1/3
+
     def add_round(self, player, computer, result):
         self._history[0].append(player)
         self._history[1].append(computer)
         self._history[2].append(result)
-
-    def get_history(self):
-        return self._history
