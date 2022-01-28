@@ -1,11 +1,11 @@
 import random
 
 class AiClassical:
-    '''Palauttaa k, p tai s. Huomioi pelaajan 10 viimeistä siirtoa.
-    Laskee todennäköisyydet seuraavalle siirrolle ja arpoo valinnan
-    todennäköisyyteen perustuen. Jos todennäköisin oletus on, että
-    pelaaja valitsee kiven, niin suurimmalla todennäköisyydellä
-    arvotaan paperi'''
+    '''Ai, joka painottaa valinnassa klassista todennäköisyyslaskentaa. Lähtö arvona kaikille
+    vaihtoehdoille on 1/3. Ai huomioi enintään pelaajan 10 viimeistä valintaa. Minkään valinnan
+    todennäköisyys ei voi laskea nollaan. pienin todennäköisyys on 1/13 ja suurin 11/13.
+    Jos todennäköisin oletus on, että pelaaja valitsee kiven, niin suurimmalla todennäköisyydellä
+    arvotaan paperi.'''
 
     def __init__(self):
         self._siirto = ["k", "p", "s"]
@@ -16,16 +16,21 @@ class AiClassical:
     def choice(self):
         #Huomioidaan vain 10 viimeisintä siirtoa.
         if len(self._history[0]) <= self._last_rounds:
+            len_history = 3 + len(self._history[0])
             history = 0
         else:
+            len_history = self._last_rounds + 3
             history = len(self._history[0]) - self._last_rounds
 
         #lasketaan todennäköisyydet joilla pelaaja pelaa kiven, paperin tai sakset
-        k_prob = (1 + self._history[0][history:].count("k")) / (3 + len(self._history[0][history:]))
-        p_prob = (1 + self._history[0][history:].count("p")) / (3 + len(self._history[0][history:]))
-        s_prob = (1 + self._history[0][history:].count("s")) / (3 + len(self._history[0][history:]))
+        k_prob = (1 + self._history[0][history:].count("k")) / len_history
+        p_prob = (1 + self._history[0][history:].count("p")) / len_history
+        s_prob = (1 + self._history[0][history:].count("s")) / len_history
         self._probs = [k_prob, p_prob, s_prob]
-        #print(self._probs)
+        print(self._probs)
+        print(self._history[0][history:])
+        print(len(self._history[0]))
+        print(history)
 
         #arvotaan tulos ja huomioidaan todennäköisyydet
         select = random.random()
