@@ -6,13 +6,13 @@ class GornUi:
         self.results = {-1:"Pelaajan voitto", 0:"Tasapeli", 1:"Tietokoneen voitto"}
         self._sentences = {'k':"Kivi murskaa sakset!", 's':"Sakset silppuaa paperin!",
                            'p':"Paperi peittää kiven!"}
-        print (colored("\nTervetuloa pelaamaan Gorn: kivi, paperi ja sakset peliä!\n", 'green'))
+        print (colored("\n\nTervetuloa pelaamaan Gorn: kivi, paperi ja sakset peliä!\n", 'green'))
 
     def start_menu(self):
         menu_items = ['1', '2', '6', '0']
 
         while True:
-            cprint("Valitse vastustaja tai tulosta tilastot:", 'green')
+            cprint("\nValitse vastustaja tai tulosta tilastot:", 'green')
             cprint("1) Satunnaisesti pelaava AI", 'cyan')
             cprint("2) Klassista todennäköisyyttä käyttävä AI", 'cyan')
             print("6) Tilastot ")

@@ -27,10 +27,6 @@ class AiClassical:
         p_prob = (1 + self._history[0][history:].count("p")) / len_history
         s_prob = (1 + self._history[0][history:].count("s")) / len_history
         self._probs = [k_prob, p_prob, s_prob]
-        print(self._probs)
-        print(self._history[0][history:])
-        print(len(self._history[0]))
-        print(history)
 
         #arvotaan tulos ja huomioidaan todennäköisyydet
         select = random.random()
