@@ -17,7 +17,6 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -30,9 +29,19 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-     - name: Install Poetry
-       run: pip install poetry
-     - name: Install dependecies
-       run: poetry install
-     - name: Run tests
-       run: poetry run coverage run --branch -m pytest
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Install dependecies
+        run: poetry install
+      - name: Run tests
+        run: poetry run coverage run --branch -m pytest
+       
+      - name: Install pylint
+        run: pip install pylint
+        
+      - name: Coverage report
+        run: poetry run coverage xml
+      - name: Coverage report to Codecov
+        run: bash <(curl -s https://codecov.io/bash)
+      - name: Analysing the code with pylint
+        run: pylint src
