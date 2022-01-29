@@ -2,6 +2,7 @@
 ## Gorn-KPS
 
 ![GitHub Actions](https://github.com/vulpecula78/KPS-Tiralabra2022/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/vulpecula78/KPS-tiralabra2022/branch/main/graph/badge.svg?token=977I3Z6IMH)](https://codecov.io/gh/vulpecula78/KPS-tiralabra2022)
 -----
 ### Sovelluksen käyttö
 1. Kloonaa repositorio
