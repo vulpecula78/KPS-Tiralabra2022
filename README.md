@@ -1,6 +1,7 @@
 # KPS-Tiralabra2022
 ## Gorn-KPS
 
+![GitHub Actions](https://github.com/vulpecula78/KPS-Tiralabra2022/workflows/CI/badge.svg)
 -----
 ### Sovelluksen käyttö
 1. Kloonaa repositorio
