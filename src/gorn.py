@@ -1,18 +1,17 @@
 import sys
 from ai_random import AiRandom
 from ai_classical import AiClassical
+from ai_markov1 import AiMarkov1
 from gorn_ui import GornUi
-
 
 class Gorn:
     def __init__(self):
         self._ai = None
-        self._ai_random = AiRandom()
-        self._ai_classic = AiClassical()
         self._ui = GornUi()
         self._items = {"k":5, "s":3, "p":1}
 
     def main(self):
+        '''Päävalikon toiminta logiikka'''
         while True:
             selection = self._ui.start_menu()
 
@@ -20,12 +19,18 @@ class Gorn:
                 sys.exit()
             if selection == "6":
                 self.statistics()
-            if selection == "1":
-                self._ai = self._ai_random
-                self.kps_peli()
-            if selection == "2":
-                self._ai =  self._ai_classic
-                self.kps_peli()
+            if selection in ('1', '2', '3'):
+                self.setai(selection)
+
+    def setai(self, selection):
+        '''Valitaan tekoäly malli ja aloitetaan peli.'''
+        if selection == "2":
+            self._ai =  AiClassical()
+        elif selection == "3":
+            self._ai =  AiMarkov1()
+        else:
+            self._ai = AiRandom()
+        self.kps_peli()
 
     def kps_peli(self):
         kierros = 0
@@ -58,21 +63,27 @@ class Gorn:
 
     def statistics(self):
         '''Viimeisempänä käytetyn ai:n tilastot. '''
+        if self._ai is None:
+            print("Virhe! Tilastoja ei vielä ole.\n")
+            return
+
         try:
             history, probabilities = self._ai.get_history()
         except AttributeError:
             print("Virhe! Tilastoja ei vielä ole.\n")
             return
 
-        print(probabilities)
-        games_played = len(history[0])
-        player_won = history[2].count(-1)
-        ai_won = history[2].count(1)
-        tie = history[2].count(0)
+        if len(history[0]) > 0:
+            games_played = len(history[0])
+            player_won = history[2].count(-1)
+            ai_won = history[2].count(1)
+            tie = history[2].count(0)
 
-        win_p = player_won / games_played * 100
-        ai_win_p = ai_won / games_played * 100
-        tie_p = tie / games_played * 100
+            win_p = player_won / games_played * 100
+            ai_win_p = ai_won / games_played * 100
+            tie_p = tie / games_played * 100
+            stats = (games_played, player_won, ai_won, tie, win_p, ai_win_p, tie_p)
+        else:
+            stats = (0, 0, 0, 0, 0, 0, 0)
 
-        stats = (games_played, player_won, ai_won, tie, win_p, ai_win_p, tie_p)
-        self._ui.print_stats(stats)
+        self._ui.print_stats(stats, probabilities)

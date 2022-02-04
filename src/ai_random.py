@@ -16,7 +16,7 @@ class AiRandom:
         '''palauttaa historian, todennäköisyydet.
         Todennäköisyys on aina sama kaikilla vaihtoehdoilla:
         1/3'''
-        return self._history, 1/3
+        return self._history, [1/3, 1/3, 1/3]
 
     def add_round(self, player, computer, result):
         '''Lisää pelatun kierroksen muistiin'''
