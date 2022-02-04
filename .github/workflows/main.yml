@@ -33,6 +33,8 @@ jobs:
         run: pip install poetry
       - name: Install dependecies
         run: poetry install
+      - name: Install termcolor
+        run: pip install termcolor
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
        
