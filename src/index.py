@@ -1,8 +1,10 @@
 from gorn import Gorn
+from gorn_ui import GornUi
 
 def main():
     """Käynnistää Gorn-KPS pelin"""
-    gorn = Gorn()
+    gornui = GornUi()
+    gorn = Gorn(gornui)
 
     gorn.main()
 

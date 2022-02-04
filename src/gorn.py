@@ -2,13 +2,13 @@ import sys
 from ai_random import AiRandom
 from ai_classical import AiClassical
 from ai_markov1 import AiMarkov1
-from gorn_ui import GornUi
 
 class Gorn:
-    def __init__(self):
+    def __init__(self, gornui):
         self._ai = None
-        self._ui = GornUi()
+        self._ui = gornui
         self._items = {"k":5, "s":3, "p":1}
+        self.stats = (0, 0, 0, 0, 0, 0, 0)
 
     def main(self):
         '''Päävalikon toiminta logiikka'''
@@ -17,6 +17,8 @@ class Gorn:
 
             if selection == "0":
                 sys.exit()
+            if selection == "0x0x": #Tämä vaihtoehto on unittestiä varten.
+                return self.stats
             if selection == "6":
                 self.statistics()
             if selection in ('1', '2', '3'):
@@ -60,18 +62,13 @@ class Gorn:
             self._ai.add_round(siirto, ai_siirto, result)
             self._ui.move(siirto, ai_siirto, result)
 
-
     def statistics(self):
         '''Viimeisempänä käytetyn ai:n tilastot. '''
         if self._ai is None:
             print("Virhe! Tilastoja ei vielä ole.\n")
             return
 
-        try:
-            history, probabilities = self._ai.get_history()
-        except AttributeError:
-            print("Virhe! Tilastoja ei vielä ole.\n")
-            return
+        history, probabilities = self._ai.get_history()
 
         if len(history[0]) > 0:
             games_played = len(history[0])
@@ -82,8 +79,6 @@ class Gorn:
             win_p = player_won / games_played * 100
             ai_win_p = ai_won / games_played * 100
             tie_p = tie / games_played * 100
-            stats = (games_played, player_won, ai_won, tie, win_p, ai_win_p, tie_p)
-        else:
-            stats = (0, 0, 0, 0, 0, 0, 0)
+            self.stats = (games_played, player_won, ai_won, tie, win_p, ai_win_p, tie_p)
 
-        self._ui.print_stats(stats, probabilities)
+        self._ui.print_stats(self.stats, probabilities)

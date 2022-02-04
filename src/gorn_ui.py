@@ -62,6 +62,6 @@ class GornUi:
         cprint(f"Kierroksia pelattu: {data[0]}, joista pelaaja voittanut {data[1]}" +
                f" ({data[4]:.2f}%) ja tietokone {data[2]} ({data[5]:.2f}%)." +
                f" Tasapelejä pelattu: {data[3]} ({data[6]:.2f}%)\n", 'green')
-        print("Todennäköisyys taulukko, jonka mukaan pelaajan seuraava siirto ennakoidaan:")
+        print("Todennäköisyystaulukko, jonka mukaan pelaajan seuraava siirto ennakoidaan:")
         for i in probabilities:
             print(i)
