@@ -36,12 +36,12 @@ jobs:
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
        
-      #- name: Install pylint
-      #  run: pip install pylint
+      - name: Install pylint
+        run: pip install pylint
         
       - name: Coverage report
         run: poetry run coverage xml
       - name: Coverage report to Codecov
         run: bash <(curl -s https://codecov.io/bash)
-      #- name: Analysing the code with pylint
-      # run: pylint src
+      - name: Analysing the code with pylint
+       run: pylint src
