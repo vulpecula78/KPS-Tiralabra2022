@@ -2,7 +2,7 @@
 
 ### Testaus
 
- Sovellusta on testattu 2 eri koneella Linuxilla(OpenSuse tumbleweed), sekä windows 10 koneella. Sovellus toimii oikein kaikilla testialustoilla, mutta poetryn asentama termcolor kirjasto ei toiminut ja se piti asentaa itse. Termcolor kirjaston toiminta vaati pienen lisäyksen käyttöliittymä luokkaan.
+ Sovellusta on testattu 2 eri koneella Linuxilla(OpenSuse tumbleweed), sekä windows 10 koneella. Sovellus toimii oikein kaikilla testialustoilla, mutta poetryn asentama termcolor kirjasto ei toiminut ja se piti asentaa itse. Termcolor kirjaston toiminta vaati pienen lisäyksen käyttöliittymä-luokkaan.
 
 ### Yksikkötestaus
  Sovelluksen Yksikkötestaus on suoritettu unittestillä ja se kattaa tällä hetkellä kaiken muun paitsi käyttöliittymän. 
@@ -16,7 +16,7 @@
  
 ### Koodin laatu
 
-Koodin laatu tarkastetaan ja ylläpidetään pylintin avulla.
+Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla.
 
 ### Pelin testaus
 
