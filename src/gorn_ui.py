@@ -11,13 +11,14 @@ class GornUi:
         print (colored("\n\nTervetuloa pelaamaan Gorn: kivi, paperi ja sakset peliä!\n", 'green'))
 
     def start_menu(self):
-        menu_items = ['1', '2', '3', '6', '0']
+        menu_items = ['1', '2', '3', '4', '6', '0']
 
         while True:
             cprint("\nValitse vastustaja tai tulosta tilastot:", 'green')
             cprint("1) Satunnaisesti pelaava AI", 'cyan')
             cprint("2) Klassista todennäköisyyttä käyttävä AI", 'cyan')
             cprint("3) 1. asteen Markov käyttävä AI", 'cyan')
+            cprint("4) Gorn AI", 'cyan')
             print("6) Tilastot ")
             print("0) lopeta")
 

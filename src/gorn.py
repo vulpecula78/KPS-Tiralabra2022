@@ -2,6 +2,7 @@ import sys
 from ai_random import AiRandom
 from ai_classical import AiClassical
 from ai_markov1 import AiMarkov1
+from gorn_ai import GornAi
 
 class Gorn:
     def __init__(self, gornui):
@@ -21,7 +22,7 @@ class Gorn:
                 return self.stats
             if selection == "6":
                 self.statistics()
-            if selection in ('1', '2', '3'):
+            if selection in ('1', '2', '3', '4'):
                 self.setai(selection)
 
     def setai(self, selection):
@@ -30,6 +31,8 @@ class Gorn:
             self._ai =  AiClassical()
         elif selection == "3":
             self._ai =  AiMarkov1()
+        elif selection == "4":
+            self._ai = GornAi()
         else:
             self._ai = AiRandom()
         self.kps_peli()
@@ -43,7 +46,7 @@ class Gorn:
         while True:
             kierros = kierros + 1
             siirto = self._ui.game_menu(kierros, voitot, ai_voitot, tasapelit)
-            ai_siirto = self._ai.choice()
+            ai_siirto = self._ai.choose()
 
             if siirto == "x":
                 break

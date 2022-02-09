@@ -8,7 +8,7 @@ class AiRandom:
         self._siirto = ["k", "p", "s"]
         self._history = [[], [], []]
 
-    def choice(self):
+    def choose(self):
         '''Palauttaa listalta arvotun k, p tai s.'''
         return random.choice(self._siirto)
 

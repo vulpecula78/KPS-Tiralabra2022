@@ -12,7 +12,7 @@ class TestAiRandom(unittest.TestCase):
         allitems = []
         i = 0
         while len(allitems) < 3 or i < 100: 
-            x = self.ai.choice()
+            x = self.ai.choose()
             i += 1
             if x not in allitems:
                 allitems.append(x)

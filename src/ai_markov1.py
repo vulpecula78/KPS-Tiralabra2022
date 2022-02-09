@@ -23,7 +23,7 @@ class AiMarkov1:
             latest = self._history[0][-1]   #current choice, pelaajan viimeisin valinta
             self._probs[self._selection[earlier]][self._selection[latest]] += 1
 
-    def choice(self):
+    def choose(self):
         if self._rounds > 1:    #kun mitään tilastoja ei vielä ole, niin arvotaan...
             highest = max(self._probs[self._selection[self._history[0][-1]]])
 

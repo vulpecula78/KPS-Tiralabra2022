@@ -13,7 +13,7 @@ class AiClassical:
         self._history = [[], [], []]
         self._last_rounds = 10
 
-    def choice(self):
+    def choose(self):
         #Huomioidaan vain 10 viimeisintä siirtoa.
         if len(self._history[0]) <= self._last_rounds:
             len_history = 3 + len(self._history[0])
