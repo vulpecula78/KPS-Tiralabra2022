@@ -38,19 +38,19 @@ class Gorn:
         self.kps_peli()
 
     def kps_peli(self):
+        '''peliologiikka.'''
         kierros = 0
         voitot = 0
         ai_voitot = 0
         tasapelit = 0
 
-        while True:
-            kierros = kierros + 1
+        while True:            
             siirto = self._ui.game_menu(kierros, voitot, ai_voitot, tasapelit)
-            ai_siirto = self._ai.choose()
-
             if siirto == "x":
                 break
+            ai_siirto = self._ai.choose()
 
+            kierros = kierros + 1
             winner = self._items[siirto] - self._items[ai_siirto]
             if winner == 0:
                 tasapelit += 1
@@ -66,7 +66,8 @@ class Gorn:
             self._ui.move(siirto, ai_siirto, result)
 
     def statistics(self):
-        '''Viimeisempänä käytetyn ai:n tilastot. '''
+        '''Viimeisempänä käytetyn ai:n tilastot.
+        Tämä on vielä kesken'''
         if self._ai is None:
             print("Virhe! Tilastoja ei vielä ole.\n")
             return
@@ -83,5 +84,18 @@ class Gorn:
             ai_win_p = ai_won / games_played * 100
             tie_p = tie / games_played * 100
             self.stats = (games_played, player_won, ai_won, tie, win_p, ai_win_p, tie_p)
-
+            
+            sets = games_played // 25
+            
+            #Luodaan tilastot 25 kierroksen voitto prosenteista, kesken...
+            win_stats = []
+            rounds = 0
+            for i in range(sets):
+                pwins = (history[2][i*25:i*25+25].count(-1) / 25) *100
+                cwins = (history[2][i*25:i*25+25].count(1) / 25) *100
+                ties = (history[2][i*25:i*25+25].count(0) / 25) *100
+                rounds += 1
+                win_stats.append((rounds, pwins, cwins, ties))
+            print(win_stats)
+                
         self._ui.print_stats(self.stats, probabilities)

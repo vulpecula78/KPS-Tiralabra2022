@@ -1,7 +1,7 @@
 class TrieNode:
     def __init__(self, item):
         self.item = item
-        self.value = 0  
+        self.value = 0
         self.leafs = {}
         self.last = False
 
@@ -29,6 +29,7 @@ class TrieTree:
             if item in node.leafs:
                 node = node.leafs[item]
             else:
+                #Ellei merkkijonoa löytynyt, niin se lisätään
                 self.insert(items)
                 node = node.leafs[item]
         return node
@@ -37,9 +38,9 @@ class TrieTree:
         '''lisää halutun merkkijonon viimeisen merkin
         arvoa yhdellä'''
         node = self.search(items)
-        a = node.value
-        a += 1
-        node.value = a
+        value = node.value
+        value += 1
+        node.value = value
 
     def get_values(self, items):
         '''Palauttaa halutusta lehdestä nähtevien
@@ -53,15 +54,16 @@ class TrieTree:
             values.append((item, leaf_node.value))
         return values
 
-    '''Nämä ovat puun tulostamista varten olevia väliaikaisia funktioita'''
     def print_tree(self):
+        '''Nämä ovat puun tulostamista varten olevia väliaikaisia funktioita,
+        joita käytetään tarkastamaan sovelluksen toimintaa.'''
         taso = 0
         node = self.root
         print("puun taso: ", taso)
         print("root:", node.value)
         print("-----------------------")
-        for item in node.leafs:
-            leaf_node = node.leafs[item]
+        for leaf in node.leafs:
+            leaf_node = node.leafs[leaf]
             self.next_leaf(leaf_node, taso)
 
     def next_leaf(self, node, taso):
@@ -69,26 +71,6 @@ class TrieTree:
         print("puun taso: ", taso)
         print("noodi:", node.item, "Noodin arvo: ", node.value)
         print("-----------------------")
-        for item in node.leafs:
-            leaf_node = node.leafs[item]
+        for leaf in node.leafs:
+            leaf_node = node.leafs[leaf]
             self.next_leaf(leaf_node, taso)
-            
-'''
-tr = TrieTree()
-tr.insert("kps")
-tr.insert("kpky")
-tr.insert("kpke")
-tr.insert("kpp")
-tr.insert("kkk")
-tr.insert("kks")
-tr.insert("kkp")
-tr.add_played_item('spsk')
-tr.add_played_item('spss')
-tr.add_played_item('kpk')
-print(tr.get_values('kp'))
-tr.add_played_item('p')
-print(tr.get_values('p'))
-tr.add_played_item('pk')
-print(tr.get_values('p'))
-print(tr.get_values('sps'))
-'''

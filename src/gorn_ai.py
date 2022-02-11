@@ -7,9 +7,11 @@ class GornAi:
         self.trie = TrieTree()
         self._history = [[], [], []]
         self._rounds = 1
-        self.focus = -5  #AI mallin huomioimat aikaisemmat siirrot siirrot. 
-        self._models = [('m1', -2), ('m2', -3), ('m3', -4), ('m4', -5), ('m', -6)] #Käytössä olevat AI mallit.
-        self._ai_alt_history = [[] for i in range(len(self._models))] #Mahdolliset eri AI mallien tekemät siirrot.
+        self.focus = -5  #AI mallin huomioimat aikaisemmat siirrot siirrot.
+        #Käytössä olevat AI mallit.
+        self._models = [('m1', -2), ('m2', -3), ('m3', -4), ('m4', -5), ('m', -6)]
+        #Mahdolliset eri AI mallien tekemät siirrot.
+        self._ai_alt_history = [[] for i in range(len(self._models))]
         self._model_in_use = 0  #Aluksi käytössä malli 0 ('m1', -2)
         self.create(self.trie)
 
@@ -36,7 +38,7 @@ class GornAi:
         hist_len = model[1] + 1
         played = ''
         for item in range(hist_len, 0): #rakennetaan merkkijono
-            played = played + self._history[0][hist_len]
+            played = played + self._history[0][item]
         #print("pelattu sarja :", played)
         prob = self.trie.get_values(played)
         return prob
@@ -44,7 +46,7 @@ class GornAi:
     def choose(self):
         if self._rounds > 1:    #ensimmäinen kierros arvotaan
             #5 kierroksen jälkeen aletaan tilastoimaan siirtoja kaikille 5 ai mallille.
-            if self._rounds > 5: 
+            if self._rounds > 5:
                 models = len(self._models)
             else:
                 models = 1
@@ -68,10 +70,10 @@ class GornAi:
                 self._ai_alt_history[x].append(choice)
             print("MODEL IN USE: ", self._model_in_use)
             if self._rounds > 10 and self._rounds % 1 == 0:
-                self.check_model()
+                self.check_model() # Tarkastetaan eri mallien suorituminen 10 erän jälkeen.
             return self._ai_alt_history[self._model_in_use][-1]
         choice = self.rselect()
-        return choice                
+        return choice
 
     def select(self, assumed):
         if assumed == 'k':
@@ -95,19 +97,19 @@ class GornAi:
             in_use = 3
         else:
             in_use = len(self._models)
-            
-        for i in range(in_use): 
+
+        for model in range(in_use):
             points = 0
             for hist in range(self.focus, 0):
                 human = self._history[0][hist]
-                ai = self._ai_alt_history[i][hist-1]
-                winner = self._selection[human] - self._selection[ai]
+                ai_item = self._ai_alt_history[model][hist-1]
+                winner = self._selection[human] - self._selection[ai_item]
                 if winner in (-2, 4):
                     points -= 1
                 elif winner in (-4, 2):
                     points += 1
             mod_points.append(points)
-            print("Mallin ", i, "pisteet: ", points)
+            print("Mallin ", model, "pisteet: ", points)
         best = max(mod_points)
         self._model_in_use = mod_points.index(best)
 
@@ -117,10 +119,8 @@ class GornAi:
         self._history[1].append(computer)
         self._history[2].append(result)
         self._rounds = len(self._history[0])
-        if self._rounds >= 1:
-            self.update_moves()
+        self.update_moves()
 
     def get_history(self):
-        self.trie.print_tree()
+        #self.trie.print_tree()
         return self._history, [1/3, 1/3, 1/3]
-              
