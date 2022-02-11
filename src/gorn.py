@@ -44,7 +44,7 @@ class Gorn:
         ai_voitot = 0
         tasapelit = 0
 
-        while True:            
+        while True:
             siirto = self._ui.game_menu(kierros, voitot, ai_voitot, tasapelit)
             if siirto == "x":
                 break
@@ -84,9 +84,9 @@ class Gorn:
             ai_win_p = ai_won / games_played * 100
             tie_p = tie / games_played * 100
             self.stats = (games_played, player_won, ai_won, tie, win_p, ai_win_p, tie_p)
-            
+
             sets = games_played // 25
-            
+
             #Luodaan tilastot 25 kierroksen voitto prosenteista, kesken...
             win_stats = []
             rounds = 0
@@ -97,5 +97,4 @@ class Gorn:
                 rounds += 1
                 win_stats.append((rounds, pwins, cwins, ties))
             print(win_stats)
-                
         self._ui.print_stats(self.stats, probabilities)

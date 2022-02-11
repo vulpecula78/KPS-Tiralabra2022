@@ -118,7 +118,7 @@ class GornAi:
         self._history[0].append(player)
         self._history[1].append(computer)
         self._history[2].append(result)
-        self._rounds = len(self._history[0])
+        self._rounds = len(self._history[1])
         self.update_moves()
 
     def get_history(self):
