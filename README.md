@@ -27,10 +27,12 @@
 ### Dokumentaatio:
 
 - [Määrittelydokumentti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/maarittelydokumentti.md)
+- [Toteutusdokumentti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/toteutusdokumentti.md)
 - [Testausdokumentti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/testausdokumentti.md)
 - [1. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_1.md)
 - [2. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_2.md)
 - [3. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_3.md)
+- [4. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_4.md)
 
 ### Testaus ja koodin laatu
 
