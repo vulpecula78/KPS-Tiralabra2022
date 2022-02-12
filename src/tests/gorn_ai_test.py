@@ -44,7 +44,7 @@ class TestGornAi(unittest.TestCase):
         item = self.ai.choose()
         self.assertEqual(item, 's')
         
-    def test_after_played_rounds_ai_should_choose_rock(self):
+    def test_after_played_rounds_ai_should_choose_rock_with_another_model(self):
         for i in range(6):
             self.ai.add_round('s', 'p', 1)
         self.ai._model_in_use = 3

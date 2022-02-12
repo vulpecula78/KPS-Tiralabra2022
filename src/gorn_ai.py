@@ -2,6 +2,9 @@ import random
 from gorn_trie import TrieTree
 
 class GornAi:
+    '''GornAi käyttää eripituisia Markovin ketjuja ennakoidakseen pelaajan siirrot.
+    Se seuraa eri pituisten ketjujen menestystä ja vaihtaa sitä sen mukaan, mikä
+    parhaiten menestyy.'''
     def __init__(self):
         self._selection = {'k':5, 'p':3, 's':1}
         self.trie = TrieTree()
