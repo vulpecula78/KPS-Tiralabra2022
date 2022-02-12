@@ -7,20 +7,21 @@
 ### Yksikkötestaus
  Sovelluksen Yksikkötestaus on suoritettu unittestillä ja se kattaa tällä hetkellä kaiken muun paitsi käyttöliittymän. 
  
- ![testausraportti](./kuvat/testiraportti.png)
+ ![testausraportti](./kuvat/testiraportti_vk4.png)
  
- Pääohjelmasta jää pari riviä testaamatta, sillä ne sulkevat sovelluksen. 
+ Testikattavuudesta puuttuu kohtia, jotka eivät ole valmiina tai niille ei ole mielekästä lähteä kirjoittamaan testejä. Esimerkkinä pääohjelmasta jää pari riviä testaamatta, sillä ne sulkevat sovelluksen. 
+ 
  ![testaamatta](./kuvat/testaamatta_1.png)
  
  Sovellukseen on lisätty testausta varten omavaihtoehto sovelluksen sulkemisen sijaan. Sovelluksen testit ajetaan automaattisesti aina, kun githubiin tehdään muutoksia ja testiraportit ovat nähtävillä codecovissa.
  
 ### Koodin laatu
 
-Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla.
+Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla. Viimeisin pylint tarkastus antoi arvosanan 9.86/10. 
 
 ### Pelin testaus
 
- Sovelluksella on vasta hieman testattu siten, että tuloksia on otettu talteen. 
+ Sovelluksella on vasta hieman testattu siten, että tuloksia on otettu talteen. Testauksen toteutuksen määrittely ei ole vielä valmis. 
  Pelitulokset ovat jakautuneet seuraavasti:
  
 * Satunnainen AI, kun pelejä pelattu 7 ja pelin keskimääräinen pituus 45 kierrosta:
@@ -35,3 +36,9 @@ Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla.
     - pelaaja:   32,44%
     - Tietokone: 33,56%
     - tasapeli:  34,00%
+    
+ Vaihtelevan pituisia Markovin-ketjuja käyttävä AI:n suoritusta mitattu 150 erän sarjoilla:
+
+![testaamatta](./kuvat/voitto_suhteet_gornai.png)
+    
+ Tätä on ehkä syytä testata vielä pidemmillä peleillä.
