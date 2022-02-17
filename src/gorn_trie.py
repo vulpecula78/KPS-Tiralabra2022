@@ -1,4 +1,9 @@
 class TrieNode:
+    '''Trie tietorakenteen noodi, jolla arvona k, p, s,
+    l tai v. Määrä kuinka monta kertaa valittu.
+
+    args:
+        item: Noodin nimi'''
     def __init__(self, item):
         self.item = item
         self.value = 0
@@ -10,7 +15,10 @@ class TrieTree:
         self.root = TrieNode('')
 
     def insert(self, items):
-        '''Asettaa trie-puuhun merkkijonon'''
+        '''Asettaa trie-puuhun merkkijonon.
+
+        args:
+            items: Asetettava merkkijono'''
         node = self.root
         for item in items:
             if item in node.leafs:
@@ -23,7 +31,14 @@ class TrieTree:
 
     def search(self, items):
         '''Hakee merkkijonon viimeisen merkin, ellei sitä ole,
-        niin se lisätään'''
+        niin se lisätään
+
+        args:
+            items: haettava merkkijono
+
+        returns:
+            node: Haettavan merkkijonon viimeinen noodi.
+        '''
         node = self.root
         for item in items:
             if item in node.leafs:
@@ -36,7 +51,11 @@ class TrieTree:
 
     def add_played_item(self, items):
         '''lisää halutun merkkijonon viimeisen merkin
-        arvoa yhdellä'''
+        arvoa yhdellä.
+
+        args:
+            items: merkkijono, jonka viimeistä arvoa nostetaan yhdellä.
+        '''
         node = self.search(items)
         value = node.value
         value += 1
@@ -45,7 +64,14 @@ class TrieTree:
     def get_values(self, items):
         '''Palauttaa halutusta lehdestä nähtevien
         lehtien arvot, eli kuinka monta kertaa niitä
-        on pelattu.'''
+        on pelattu.
+
+        args:
+            items: merkkijono,  jonka viimeisen merkin tiedot haetaan
+
+        returns:
+            values: haetun merkkijonon viimeisen merkin lehtien nimet ja arvot.
+        '''
         values = []
         node = self.search(items)
         for item in node.leafs:
