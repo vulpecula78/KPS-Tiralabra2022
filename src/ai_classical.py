@@ -19,7 +19,8 @@ class AiClassical:
         painottaen todennäköisyyksiä.
 
         returns:
-            k, p tai s'''
+            k, p tai s
+        '''
 
         #Huomioidaan vain 10 viimeisintä siirtoa.
         if len(self._history[0]) <= self._last_rounds:

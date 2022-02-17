@@ -18,12 +18,20 @@ class AiMarkov1:
         self._selection = {'k':0, 'p':1, 's':2}
 
     def update_probs(self):
+        '''Lisää tehdyn siirron self._probs matriisiin'''
         if self._rounds > 1:
             earlier = self._history[0][-2]   #earlier choice, pelaajan aiempi valinta
             latest = self._history[0][-1]   #current choice, pelaajan viimeisin valinta
             self._probs[self._selection[earlier]][self._selection[latest]] += 1
 
     def choose(self):
+        '''Palauttaa k, p tai s sen mukaan minkälaisen valinnan
+        pelaaja on aiemmalla kierroksella tehnyt tai valitsee
+        satunnaisesti, mikäli todennäköisyydet ovat yhtä suuria.
+
+        returns:
+            'k','p', tai 's'
+        '''
         if self._rounds > 1:    #kun mitään tilastoja ei vielä ole, niin arvotaan...
             highest = max(self._probs[self._selection[self._history[0][-1]]])
 
@@ -40,6 +48,14 @@ class AiMarkov1:
         return random.choice(self._siirto)
 
     def add_round(self, player, computer, result):
+        '''Tallentaa pelatun kierroksen tiedot self._history
+        taulukkoon: Pelaajan ja AI:n valinnat "k, p tai s",
+        sekä kierroksen tuloksen.
+
+        args:
+            player: Pelaajan tekemä valinta.
+            computer: AI:n valinta.
+            result: 1: AI voitto, -1: pelaajan voitto, 0: tasapeli'''
         self._history[0].append(player)
         self._history[1].append(computer)
         self._history[2].append(result)
@@ -47,4 +63,9 @@ class AiMarkov1:
         self.update_probs()
 
     def get_history(self):
+        '''Palauttaa pelihistorian ja todennäköisyydet.
+
+        returns:
+            self._history: Kaikkien kierrosten valinnat ja lopputulokset.
+            self._probs: Todennäköisyysmatriisi'''
         return self._history, self._probs
