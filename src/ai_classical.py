@@ -14,6 +14,13 @@ class AiClassical:
         self._last_rounds = 10
 
     def choose(self):
+        '''Laskee pelattujen kierrosten perusteella todennäköisyydet
+        pelaajan valinnoille ja tekee valinnan satunnaisesti
+        painottaen todennäköisyyksiä.
+
+        returns:
+            k, p tai s'''
+
         #Huomioidaan vain 10 viimeisintä siirtoa.
         if len(self._history[0]) <= self._last_rounds:
             len_history = 3 + len(self._history[0])
@@ -37,9 +44,22 @@ class AiClassical:
         return "k"
 
     def add_round(self, player, computer, result):
+        '''Tallentaa pelatun kierroksen tiedot self._history
+        taulukkoon: Pelaajan ja AI:n valinnat "k, p tai s",
+        sekä kierroksen tuloksen.
+
+        args:
+            player: Pelaajan tekemä valinta.
+            computer: AI:n valinta.
+            result: 1: AI voitto, -1: pelaajan voitto, 0: tasapeli'''
         self._history[0].append(player)
         self._history[1].append(computer)
         self._history[2].append(result)
 
     def get_history(self):
+        '''Palauttaa pelihistorian ja todennäköisyydet.
+
+        returns:
+            self._history: Kaikkien kierrosten valinnat ja lopputulokset.
+            self._probs: Todennäköisyydet laskettuna 10 viime kierrokselta.'''
         return self._history, self._probs
