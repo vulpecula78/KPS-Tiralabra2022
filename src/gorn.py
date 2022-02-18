@@ -12,7 +12,8 @@ class Gorn:
         self.stats = (0, 0, 0, 0, 0, 0, 0)
 
     def main(self):
-        '''Päävalikon toiminta logiikka'''
+        '''Päävalikon toiminta logiikka. Kutsuu ui:lta
+        valintaa, jonka mukaan valitaan toiminto.'''
         while True:
             selection = self._ui.start_menu()
 
@@ -26,7 +27,10 @@ class Gorn:
                 self.setai(selection)
 
     def setai(self, selection):
-        '''Valitaan tekoäly malli ja aloitetaan peli.'''
+        '''Valitaan tekoäly malli ja aloitetaan peli.
+
+        args:
+            selection: str: 1, 2, 3 tai 4 '''
         if selection == "2":
             self._ai =  AiClassical()
         elif selection == "3":
@@ -38,32 +42,34 @@ class Gorn:
         self.kps_peli()
 
     def kps_peli(self):
-        '''peliologiikka.'''
-        kierros = 0
-        voitot = 0
-        ai_voitot = 0
-        tasapelit = 0
+        '''pelilogiikka. Pyytää ui:lta pelaajan valinnan ja
+        valitulta tekoälyltä AI valinnan. Tarkastaa tuloksen
+        ja palauttaa tiedot ui:lle ja AI:lle.'''
+        round_ = 0
+        win = 0
+        ai_win = 0
+        ties = 0
 
         while True:
-            siirto = self._ui.game_menu(kierros, voitot, ai_voitot, tasapelit)
-            if siirto == "x":
+            choice = self._ui.game_menu(round_, win, ai_win, ties)
+            if choice == "x":
                 break
-            ai_siirto = self._ai.choose()
+            ai_choice = self._ai.choose()
 
-            kierros = kierros + 1
-            winner = self._items[siirto] - self._items[ai_siirto]
+            round_ += 1
+            winner = self._items[choice] - self._items[ai_choice]
             if winner == 0:
-                tasapelit += 1
+                ties += 1
                 result = 0
             elif winner in (2, -4):
-                voitot += 1
+                win += 1
                 result = -1
             else:
-                ai_voitot += 1
+                ai_win += 1
                 result = 1
 
-            self._ai.add_round(siirto, ai_siirto, result)
-            self._ui.move(siirto, ai_siirto, result)
+            self._ai.add_round(choice, ai_choice, result)
+            self._ui.move(choice, ai_choice, result)
 
     def statistics(self):
         '''Viimeisempänä käytetyn ai:n tilastot.
