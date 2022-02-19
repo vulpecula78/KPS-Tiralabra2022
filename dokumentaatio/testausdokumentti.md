@@ -17,7 +17,7 @@
  
 ### Koodin laatu
 
-Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla. Viimeisin pylint tarkastus antoi arvosanan 9.86/10. 
+Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla. Viimeisin pylint tarkastus antoi arvosanan 9.94/10. 
 
 ### Pelin testaus
 
@@ -33,12 +33,17 @@ Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla. Viimeisin pylint 
     - Tietokone: 34,50%
     - tasapeli:  30,13%
 * 1.asteen Markov, kun pelejä 3 ja keskimääräinen pituus 43 kierrosta:
-    - pelaaja:   32,44%
-    - Tietokone: 33,56%
-    - tasapeli:  34,00%
+    - pelaaja:   34,33%
+    - Tietokone: 33,38%
+    - tasapeli:  32,29%
     
  Vaihtelevan pituisia Markovin-ketjuja käyttävä AI:n suoritusta mitattu 150 erän sarjoilla:
 
 ![testaamatta](./kuvat/voitto_suhteet_gornai.png)
     
- Tätä on ehkä syytä testata vielä pidemmillä peleillä.
+
+ Näitä on ehkä syytä testata vielä pidemmillä peleillä. AI:n suoritumisessa on jonkin verran eroja kun focusta, eli kuinka monen kierroksen ajalta menestystä seurataan, ja mallien määrää muutetaan:
+
+![testaamatta](./kuvat/voittosuhteet_eri_mallit.png)
+
+Testejä ei vielä ole montaa tehtynä pelien kierrosmääriä tulee kasvattaa vähintään 200 asti.

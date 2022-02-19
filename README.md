@@ -33,6 +33,7 @@
 - [2. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_2.md)
 - [3. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_3.md)
 - [4. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_4.md)
+- [5. Viikkoraportti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/viikkoraportti_5.md)
 
 ### Testaus ja koodin laatu
 
