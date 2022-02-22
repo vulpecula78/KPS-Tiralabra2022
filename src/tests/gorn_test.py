@@ -7,7 +7,7 @@ class StubUI:
         self.moves = moves
         
     def start_menu(self):
-        return self.menu_commands.pop(0)
+        return self.menu_commands.pop(0), False
 
     def game_menu(self, round_, won, ai_won, ties):
         return self.moves.pop(0)

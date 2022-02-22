@@ -1,5 +1,5 @@
 import unittest
-from ai_classical import AiClassical
+from ai.ai_classical import AiClassical
 
 class TestAiClassical(unittest.TestCase):
     def setUp(self):

@@ -4,14 +4,27 @@ from termcolor import colored, cprint
 class GornUi:
     def __init__(self):
         os.system('color') #Tarvitaan, jotta termcolor toimii windowsissa
-        self.items = {"k":"kiven", "p":"paperin", "s":"sakset"}
+        self.items = {"k":"kiven", "p":"paperin", "s":"sakset", "l":"liskon", "v":"Spockin"}
         self.results = {-1:"Pelaajan voitto", 0:"Tasapeli", 1:"Tietokoneen voitto"}
-        self._sentences = {'k':"Kivi murskaa sakset!", 's':"Sakset silppuaa paperin!",
-                           'p':"Paperi peittää kiven!"}
-        print (colored("\n\nTervetuloa pelaamaan Gorn: kivi, paperi ja sakset peliä!\n", 'green'))
+        self._sentences = {'ks':"Kivi murskaa sakset!", 'sp':"Sakset silppuaa paperin!",
+                           'pk':"Paperi peittää kiven!", 'lv':"Lisko myrkyttää Spockin!",
+                           'kl':"kivi murskaa liskon!", 'lp':"Lisko syö paperin!",
+                           'vs':"Spock rikkoo sakset!", 'vk':"Spock höyrystää kiven!",
+                           'pv':"Paperi kiistää Spockin väitteen!",
+                           'sl':"Sakset katkoo liskon kaulan!"}
+        self.gorn = False
+        print (colored
+               ("\n\n-----------------------------------------------------------------------",
+                'green'))
+        print (colored
+               ("\nTervetuloa pelaamaan Gorn: kivi, paperi, sakset, lisko ja Spock peliä!\n",
+                'green'))
+        print (colored
+               ("-----------------------------------------------------------------------\n",
+                'green'))
 
     def start_menu(self):
-        menu_items = ['1', '2', '3', '4', '6', '0']
+        menu_items = ['1', '2', '3', '4', '5', '6', '0']
 
         while True:
             cprint("\nValitse vastustaja tai tulosta tilastot:", 'green')
@@ -19,16 +32,27 @@ class GornUi:
             cprint("2) Klassista todennäköisyyttä käyttävä AI", 'cyan')
             cprint("3) 1. asteen Markov käyttävä AI", 'cyan')
             cprint("4) Gorn AI", 'cyan')
+            cprint("5) Vaihda pelimoodia, käytössä:  ", end='')
+            if self.gorn:
+                print("Kivi, paperi, sakset, lisko ja Spock.")
+            else:
+                print("Kivi, paperi ja sakset")
             print("6) Tilastot ")
             print("0) lopeta")
 
             selection = input("\nValintasi: ")
 
             if selection in menu_items:
-                return selection
+                if selection == '5':
+                    self.gorn = not self.gorn
+                    continue
+                return selection, self.gorn
 
     def game_menu(self, round_, won, ai_won, ties):
-        choices = ('x', 'k', 's', 'p')
+        if self.gorn:
+            choices = ('x', 'k', 's', 'p', 'l', 'v')
+        else:
+            choices = ('x', 'k', 's', 'p')
 
         while True:
             print()
@@ -36,7 +60,11 @@ class GornUi:
             print(colored(f"Tilanne {round_} kierroksen jälkeen:", 'white'),
                   colored(f"Pelaaja: {won}", 'green'), colored(f" Tietokone: {ai_won}", 'red'),
                   colored(f" Tasapelit: {ties}", 'blue'))
-            cprint("Valitse k)ivi, s)akset tai p)aperi. \nx) lopettaa pelin: ", 'cyan', end='')
+            if self.gorn:
+                cprint("Valitse k)kivi, s)sakset, p)paperi, l)lisko tai v)Spock  \nx)" +
+                       "lopettaa pelin: ", 'cyan', end='')
+            else:
+                cprint("Valitse k)ivi, s)akset tai p)aperi. \nx) lopettaa pelin: ", 'cyan', end='')
             choice = input('')
 
             if choice in choices:
@@ -46,9 +74,9 @@ class GornUi:
     def move(self, player, computer, result):
         print("Valitsit " + self.items[player] + " ja tietokone valitsi " + self.items[computer])
         if result == 1:
-            cprint(self._sentences[computer], 'red')
+            cprint(self._sentences[computer+player], 'red')
         elif result == -1:
-            cprint(self._sentences[player], 'green')
+            cprint(self._sentences[player+computer], 'green')
         print(self.results[result] + "!")
 
     def print_stats(self, data, probabilities):

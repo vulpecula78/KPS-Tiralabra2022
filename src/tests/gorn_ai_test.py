@@ -1,12 +1,12 @@
 import unittest
-from gorn_ai import GornAi
+from ai.gorn_ai import GornAi
 
 class TestGornAi(unittest.TestCase):
     def setUp(self):
         self.rocks = ["k", "s", -1]
         self.scissors = ["s", "s", 0]
         self.papers = ["p", "r", 0]
-        self.ai = GornAi()
+        self.ai = GornAi(False, 3, -3)
         
     def test_in_first_round_all_items_will_be_possible(self):
         #Testi epäonnistuu jos ei kaikkia vaihtoehtoja tule 100 yrityksellä.
@@ -47,15 +47,15 @@ class TestGornAi(unittest.TestCase):
     def test_after_played_rounds_ai_should_choose_rock_with_another_model(self):
         for i in range(6):
             self.ai.add_round('s', 'p', 1)
-        self.ai._model_in_use = 3
+        self.ai._model_in_use = 2
         
         item = self.ai.choose()
         self.assertEqual(item, 'k')
         
     def test_ai_changes_model(self):
-        player = 'sskspskspskk'
-        ai = 'pspspppssspkp'#'pspspppkpkpkp'
-        points = [-1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0]
+        player = 'sskspskspskksskkps'
+        ai =     'pspspppssspkppkppk'#'pspspppkpkpkp'
+        points = [-1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, -1, -1, 0, 1, 1]
         for x in range(12):
             i = player[x]
             j = ai[x]

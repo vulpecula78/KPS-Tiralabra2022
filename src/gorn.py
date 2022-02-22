@@ -8,15 +8,15 @@ class Gorn:
     def __init__(self, gornui):
         self._ai = None
         self._ui = gornui
-        self._items = {"k":5, "s":3, "p":1}
+        #self._items = {"k":5, "s":3, "p":1}
+        self._items = {"k":0, "s":2, "p":1, "l":4, "v":3} # lisko 4, spock 2
         self.stats = (0, 0, 0, 0, 0, 0, 0)
 
     def main(self):
         '''Päävalikon toiminta logiikka. Kutsuu ui:lta
         valintaa, jonka mukaan valitaan toiminto.'''
         while True:
-            selection = self._ui.start_menu()
-
+            selection, mode = self._ui.start_menu()
             if selection == "0":
                 sys.exit()
             if selection == "0x0x": #Tämä vaihtoehto on unittestiä varten.
@@ -24,21 +24,21 @@ class Gorn:
             if selection == "6":
                 self.statistics()
             if selection in ('1', '2', '3', '4'):
-                self.setai(selection)
+                self.setai(selection, mode)
 
-    def setai(self, selection):
+    def setai(self, selection, mode):
         '''Valitaan tekoäly malli ja aloitetaan peli.
 
         args:
             selection: str: 1, 2, 3 tai 4 '''
         if selection == "2":
-            self._ai =  AiClassical()
+            self._ai =  AiClassical(mode)
         elif selection == "3":
-            self._ai =  AiMarkov1()
+            self._ai =  AiMarkov1(mode)
         elif selection == "4":
-            self._ai = GornAi()
+            self._ai = GornAi(mode)
         else:
-            self._ai = AiRandom()
+            self._ai = AiRandom(mode)
         self.kps_peli()
 
     def kps_peli(self):
@@ -61,7 +61,7 @@ class Gorn:
             if winner == 0:
                 ties += 1
                 result = 0
-            elif winner in (2, -4):
+            elif winner in (-4, -2, 1, 3):
                 win += 1
                 result = -1
             else:

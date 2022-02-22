@@ -1,5 +1,5 @@
 import unittest
-from ai_random import AiRandom
+from ai.ai_random import AiRandom
 
 class TestAiRandom(unittest.TestCase):
     def setUp(self):
