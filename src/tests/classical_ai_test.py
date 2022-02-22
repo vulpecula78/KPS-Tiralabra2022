@@ -46,3 +46,15 @@ class TestAiClassical(unittest.TestCase):
         s = self.ai.choose()
         hist, probs = self.ai.get_history()
         self.assertAlmostEqual(probs[2], 0.154, 3)
+        
+    def test_all_items_will_be_chosen_in_kpslv(self):
+        self.ai = AiClassical(True)
+        #Testi epäonnistuu jos ei kaikkia vaihtoehtoja tule 100 yrityksellä.
+        allitems = []
+        i = 0
+        while len(allitems) < 3 or i < 100:
+            x = self.ai.choose()
+            i += 1
+            if x not in allitems:
+                allitems.append(x)
+        self.assertListEqual(sorted(allitems), ['k', 'l', 'p', 's', 'v'])
