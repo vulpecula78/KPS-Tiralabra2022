@@ -1,5 +1,5 @@
 from gorn import Gorn
-from gorn_ui import GornUi
+from ui.gorn_ui import GornUi
 
 def main():
     """Käynnistää Gorn-KPS pelin"""

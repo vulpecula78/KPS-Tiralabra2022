@@ -1,8 +1,8 @@
 import sys
-from ai_random import AiRandom
-from ai_classical import AiClassical
-from ai_markov1 import AiMarkov1
-from gorn_ai import GornAi
+from ai.ai_random import AiRandom
+from ai.ai_classical import AiClassical
+from ai.ai_markov1 import AiMarkov1
+from ai.gorn_ai import GornAi
 
 class Gorn:
     def __init__(self, gornui):
