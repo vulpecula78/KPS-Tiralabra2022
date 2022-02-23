@@ -60,3 +60,50 @@ class TestAiClassical(unittest.TestCase):
                 allitems.append(x)
         self.assertListEqual(sorted(allitems), ['k', 'p', 's'])
         
+    def test_in_first_round_all_items_will_be_possible_in_kpslv(self):
+        self.ai = AiMarkov1(True)
+        #Testi epäonnistuu jos ei kaikkia vaihtoehtoja tule 100 yrityksellä.
+        allitems = []
+        i = 0
+        while len(allitems) < 5 and i < 100:
+            x = self.ai.choose()
+            i += 1
+            if x not in allitems:
+                allitems.append(x)
+        self.assertListEqual(sorted(allitems), ['k', 'l', 'p', 's', 'v'])
+
+        
+    def test_ai_should_play_scissors_or_Lizard_after_2_papers_played_by_player(self):
+        self.ai = AiMarkov1(True)
+        self.ai.add_round(self.papers[0], self.papers[1], self.papers[2])
+        self.ai.add_round(self.papers[0], self.papers[1], self.papers[2])
+        ai_move = self.ai.choose()
+        self.assertIn(ai_move, ["s", "l"])
+        
+    def test_ai_should_play_Spock_or_paper_after_2_rocks_played_by_player(self):
+        self.ai = AiMarkov1(True)
+        self.ai.add_round(self.rocks[0], self.rocks[1], self.rocks[2])
+        self.ai.add_round(self.rocks[0], self.rocks[1], self.rocks[2])
+        ai_move = self.ai.choose()
+        self.assertIn(ai_move, ["p", "v"])
+
+    def test_ai_should_play_Spock_or_rock_after_2_scissors_played_by_player(self):
+        self.ai = AiMarkov1(True)
+        self.ai.add_round(self.scissors[0], self.scissors[1], self.scissors[2])
+        self.ai.add_round(self.scissors[0], self.scissors[1], self.scissors[2])
+        ai_move = self.ai.choose()
+        self.assertIn(ai_move, ["k", "v"])
+        
+    def test_ai_should_play_paper_or_lizard_after_2_spocks_played(self):
+        self.ai = AiMarkov1(True)
+        self.ai.add_round('v', self.scissors[1], self.scissors[2])
+        self.ai.add_round('v', self.scissors[1], self.scissors[2])
+        ai_move = self.ai.choose()
+        self.assertIn(ai_move, ["l", "p"])
+        
+    def test_ai_should_play_rock_or_scissors_after_2_spocks_played(self):
+        self.ai = AiMarkov1(True)
+        self.ai.add_round('l', self.scissors[1], self.scissors[2])
+        self.ai.add_round('l', self.scissors[1], self.scissors[2])
+        ai_move = self.ai.choose()
+        self.assertIn(ai_move, ["k", "s"])
