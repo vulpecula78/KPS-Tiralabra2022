@@ -94,7 +94,6 @@ class GornAi:
                 best_prob = 0
                 assume = None
                 for prob in probabilities:
-                    print(prob[1])
                     if prob[1] > best_prob:
                         best_prob = prob[1]
                         assume = prob[0]

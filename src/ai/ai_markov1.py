@@ -21,9 +21,7 @@ class AiMarkov1:
             self.__probs =   [[0,   0,   0],      #kivi
                               [0,   0,   0],       #paperi
                               [0,   0,   0]]       #sakset
-                            
         self.__mode = mode
-        
         self._history = [[], [], []]
         self._rounds = 1
         self._selection = {'k':0, 'p':1, 's':2, 'v':4, 'l':3, 0:'k', 1:'p', 2:'s', 3:'l', 4:'v'}

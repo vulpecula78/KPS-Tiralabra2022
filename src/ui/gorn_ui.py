@@ -79,7 +79,7 @@ class GornUi:
             cprint(self._sentences[player+computer], 'green')
         print(self.results[result] + "!")
 
-    def print_stats(self, data, probabilities):
+    def print_stats(self, data, stats_by_rounds, probabilities):
         '''Tulostaa pelin tilastot.
             data on lista, jossa
             0: pelatut kierrokset, 1: pelaajan voitot,
@@ -91,6 +91,18 @@ class GornUi:
         cprint(f"Kierroksia pelattu: {data[0]}, joista pelaaja voittanut {data[1]}" +
                f" ({data[4]:.2f}%) ja tietokone {data[2]} ({data[5]:.2f}%)." +
                f" Tasapelejä pelattu: {data[3]} ({data[6]:.2f}%)\n", 'green')
-        print("Todennäköisyystaulukko, jonka mukaan pelaajan seuraava siirto ennakoidaan:")
-        for i in probabilities:
-            print(i)
+        if len(stats_by_rounds) > 0:
+            for i in range(len(stats_by_rounds)):
+                print(f"Kierrokset {i+1} - {(i+1)*25}: Pelaaja: {stats_by_rounds[i][1]:.2f}%," +
+                      f" AI: {stats_by_rounds[i][2]:.2f}%," +
+                      f"Tasapelit: {stats_by_rounds[i][3]:.2f}%")
+            print()
+        if type(probabilities[0]) == float:
+            print("Todennäköisyystaulukko, jonka mukaan pelaajan seuraava siirto ennakoidaan:")
+            items = ['k', 'p', 's', 'l', 'v']
+            for i in range(len(probabilities)):
+                print(f"{items[i]}: {probabilities[i]:.2f}% ", end="")
+        else:
+            for i in probabilities:
+                print(i)
+        print()

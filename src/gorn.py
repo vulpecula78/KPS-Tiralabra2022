@@ -3,6 +3,7 @@ from ai.ai_random import AiRandom
 from ai.ai_classical import AiClassical
 from ai.ai_markov1 import AiMarkov1
 from ai.gorn_ai import GornAi
+from gorn_stats import GornStatistics
 
 class Gorn:
     def __init__(self, gornui):
@@ -11,6 +12,7 @@ class Gorn:
         #self._items = {"k":5, "s":3, "p":1}
         self._items = {"k":0, "s":2, "p":1, "l":4, "v":3} # lisko 4, spock 2
         self.stats = (0, 0, 0, 0, 0, 0, 0)
+        self._statistics = GornStatistics()
 
     def main(self):
         '''Päävalikon toiminta logiikka. Kutsuu ui:lta
@@ -80,27 +82,7 @@ class Gorn:
 
         history, probabilities = self._ai.get_history()
 
-        if len(history[0]) > 0:
-            games_played = len(history[0])
-            player_won = history[2].count(-1)
-            ai_won = history[2].count(1)
-            tie = history[2].count(0)
+        self.stats = self._statistics.victories(history)
+        win_stats = self._statistics.stats_by_nrounds(history)
 
-            win_p = player_won / games_played * 100
-            ai_win_p = ai_won / games_played * 100
-            tie_p = tie / games_played * 100
-            self.stats = (games_played, player_won, ai_won, tie, win_p, ai_win_p, tie_p)
-
-            sets = games_played // 25
-
-            #Luodaan tilastot 25 kierroksen voitto prosenteista, kesken...
-            win_stats = []
-            rounds = 0
-            for i in range(sets):
-                pwins = (history[2][i*25:i*25+25].count(-1) / 25) *100
-                cwins = (history[2][i*25:i*25+25].count(1) / 25) *100
-                ties = (history[2][i*25:i*25+25].count(0) / 25) *100
-                rounds += 1
-                win_stats.append((rounds, pwins, cwins, ties))
-            print(win_stats)
-        self._ui.print_stats(self.stats, probabilities)
+        self._ui.print_stats(self.stats, win_stats, probabilities)

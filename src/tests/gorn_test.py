@@ -15,7 +15,7 @@ class StubUI:
     def move(self, player, computer, result):
         pass
     
-    def print_stats(self, data, probabilities):
+    def print_stats(self, data, stats_by_rounds, probabilities):
         return data[0]
 
 
