@@ -30,7 +30,7 @@ class GornStatistics:
         games_played = len(history[0])
         sets = games_played // 25
 
-        #Luodaan tilastot 25 kierroksen voitto prosenteista, kesken...
+        #Luodaan tilastot 25 kierroksen voittoprosenteista.
         win_stats = []
         rounds = 0
         for i in range(sets):
