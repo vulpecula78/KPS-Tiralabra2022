@@ -16,7 +16,7 @@ Käyttöliittymänä on yksinkertainen tekstipohjainen malli, joka pitää sisä
 
 #### AI luokat
 
-AI luokkia on 4: Täysin satunnaisesti toimiva, klassista todennäköisyyttä käyttävä luokka, 1. asteen Markovia käyttävä luokka, sekä eripituisia Markovin-ketjuja käyttävä luokka.
+AI luokkia on 4: Täysin satunnaisesti toimiva, klassista todennäköisyyttä käyttävä luokka, 1. asteen Markovia käyttävä luokka, sekä eripituisia Markovin-ketjuja käyttävä luokka, joka vaihtelee käytettävän ketjun pituutta sen mukaan minkälainen ketju olisi tuonut parhaan tuloksen aiemmilla kierroksilla.
 
 #### Trie 
 

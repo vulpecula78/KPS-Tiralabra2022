@@ -190,5 +190,5 @@ class GornAi:
 
         returns:
             self._history: Kaikkien kierrosten valinnat ja lopputulokset.
-            self._probs: Todennäköisyydet laskettuna 10 viime kierrokselta.'''
-        return self._history, [1/3, 1/3, 1/3] #self.trie
+            models: how many models used, focus length'''
+        return self._history, ["models:", len(self._models), "focus:", self.focus]
