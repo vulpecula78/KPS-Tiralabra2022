@@ -65,3 +65,22 @@ class TestGornAi(unittest.TestCase):
         self.ai.check_model()
         model = self.ai._model_in_use
         self.assertEqual(model,  1)
+        
+    def test_with_lizard_and_spock(self):
+        self.ai = GornAi(True, 4, -4)
+        self.ai.add_round('s', 'p', 1)
+        self.ai.add_round('s', 'p', 1)
+        self.ai.add_round('l', 's', -1)
+        self.ai.add_round('v', 'v', 0)
+        choice = self.ai.choose()
+        self.assertIn(choice, ['v', 'k'])
+        
+    def test_models_and_focus_set_correctly(self):
+        self.ai = GornAi(True, 4, -4)
+        self.ai.add_round('s', 'p', 1)
+        self.ai.add_round('l', 's', -1)
+        self.ai.add_round('s', 'p', 1)
+        choice = self.ai.choose()
+        hist, model = self.ai.get_history()
+        self.assertEqual(model, ["models:", 4, "focus:", -4])
+        

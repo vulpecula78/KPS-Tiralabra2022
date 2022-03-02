@@ -42,6 +42,14 @@ class TestGorn(unittest.TestCase):
         self.assertEqual(stats[0], 7) #pelatut kierrokset
         self.assertGreater(stats[2], 4)
         
+    def test_game_against_gorn_ai(self):
+        ui = StubUI(['4', '6', '0x0x'], ['s', 's', 's', 's', 's', 's', 's', 'x'])
+        gorn = Gorn(ui)
+        
+        stats = gorn.main()
+        self.assertEqual(stats[0], 7) #pelatut kierrokset
+        self.assertGreater(stats[2], 4)
+        
     def test_statistics_when_no_games_started(self):
         ui = StubUI(['6', '0x0x'], [])
         gorn = Gorn(ui)
