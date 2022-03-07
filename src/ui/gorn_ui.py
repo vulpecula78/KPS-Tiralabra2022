@@ -93,9 +93,9 @@ class GornUi:
                f" Tasapelejä pelattu: {data[3]} ({data[6]:.2f}%)\n", 'green')
         if len(stats_by_rounds) > 0:
             for i in range(len(stats_by_rounds)):
-                print(f"Kierrokset {i*25+1} - {(i+1)*25}: Pelaaja: {stats_by_rounds[i][1]:.2f}%," +
-                      f" AI: {stats_by_rounds[i][2]:.2f}%," +
-                      f" Tasapelit: {stats_by_rounds[i][3]:.2f}%")
+                print(f"Kierrokset {i*25+1} - {(i+1)*25}: Pelaaja: {stats_by_rounds[i][0]:.2f}%," +
+                      f" AI: {stats_by_rounds[i][1]:.2f}%," +
+                      f" Tasapelit: {stats_by_rounds[i][2]:.2f}%")
             print()
         if type(probabilities[0]) == float:
             print("Todennäköisyystaulukko, jonka mukaan pelaajan seuraava siirto ennakoidaan:")

@@ -27,16 +27,24 @@ class GornStatistics:
         return (0,0,0,0,0,0,0)
 
     def stats_by_nrounds(self, history):
+        '''
+        Palauttaa voittoprosentit 25 kierroksen välein.
+
+        args:
+            history: Pelatuin pelin tapahtumat, joista tilasto luodaan.
+
+        returns:
+            3-tuple: pelaajan-, AI:n voitto % ja tasapeli %
+        '''
+
         games_played = len(history[0])
         sets = games_played // 25
 
         #Luodaan tilastot 25 kierroksen voittoprosenteista.
         win_stats = []
-        rounds = 0
         for i in range(sets):
             pwins = (history[2][i*25:i*25+25].count(-1) / 25) *100
             cwins = (history[2][i*25:i*25+25].count(1) / 25) *100
             ties = (history[2][i*25:i*25+25].count(0) / 25) *100
-            rounds += 1
-            win_stats.append((rounds, pwins, cwins, ties))
+            win_stats.append((pwins, cwins, ties))
         return win_stats
