@@ -11,4 +11,4 @@ class Testgornstats(unittest.TestCase):
         
     def test_points_by_rounds(self):
         result = self.stats.stats_by_nrounds(self.history)
-        self.assertEqual(result, [(1, 0.0, 100.0, 0.0)])
+        self.assertEqual(result, [(0.0, 100.0, 0.0)])
