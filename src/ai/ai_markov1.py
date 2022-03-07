@@ -39,7 +39,7 @@ class AiMarkov1:
         satunnaisesti, mikäli todennäköisyydet ovat yhtä suuria.
 
         returns:
-            'k','p', tai 's'
+            k, p ,s ,l tai v
         '''
         if self._rounds > 1:    #kun mitään tilastoja ei vielä ole, niin arvotaan...
             highest = max(self.__probs[self._selection[self._history[0][-1]]])
@@ -53,15 +53,16 @@ class AiMarkov1:
 
             if self.__mode:
                 if assumed == 'k':
-                    return random.choice(['p', 'v'])
-                if assumed == 'p':
-                    return random.choice(['s', 'l'])
-                if assumed == 's':
-                    return random.choice(['k', 'v'])
-                if assumed == 'l':
-                    return random.choice(['k', 's'])
-                return random.choice(['p', 'l'])
-
+                    choice = random.choice(['p', 'v'])
+                elif assumed == 'p':
+                    choice = random.choice(['s', 'l'])
+                elif assumed == 's':
+                    choice = random.choice(['k', 'v'])
+                elif assumed == 'l':
+                    choice = random.choice(['k', 's'])
+                else:
+                    choice = random.choice(['p', 'l'])
+                return choice
             if assumed == 'k':
                 return "p"
             if assumed == 'p':

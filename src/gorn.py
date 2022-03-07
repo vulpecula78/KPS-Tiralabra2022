@@ -9,7 +9,6 @@ class Gorn:
     def __init__(self, gornui):
         self._ai = None
         self._ui = gornui
-        #self._items = {"k":5, "s":3, "p":1}
         self._items = {"k":0, "s":2, "p":1, "l":4, "v":3} # lisko 4, spock 2
         self.stats = (0, 0, 0, 0, 0, 0, 0)
         self._statistics = GornStatistics()
@@ -29,7 +28,7 @@ class Gorn:
                 self.setai(selection, mode)
 
     def setai(self, selection, mode):
-        '''Valitaan tekoäly malli ja aloitetaan peli.
+        '''Valitaan tekoälymalli ja aloitetaan peli.
 
         args:
             selection: str: 1, 2, 3 tai 4 '''
@@ -46,7 +45,13 @@ class Gorn:
     def kps_peli(self):
         '''pelilogiikka. Pyytää ui:lta pelaajan valinnan ja
         valitulta tekoälyltä AI valinnan. Tarkastaa tuloksen
-        ja palauttaa tiedot ui:lle ja AI:lle.'''
+        ja palauttaa tiedot ui:lle ja AI:lle. Funktio on silmukassa,
+        kunnes saa syötteen "x", jonka jälkeen palataan pääsilmukkaan.
+
+        Ensin pyydetään pelaajan valinta kutsumalla ui:n game_menu,
+        siten AI:n valinta. Tämän jälkeen tarkastetaan tulos,
+        päivitetään historia ja pyydetään ui:tä tulostamaan tapahtumat.
+        '''
         round_ = 0
         win = 0
         ai_win = 0
@@ -75,7 +80,10 @@ class Gorn:
 
     def statistics(self):
         '''Viimeisempänä käytetyn ai:n tilastot.
-        Tämä on vielä kesken'''
+        Mikäli tilastoja ei ole, niin palautetaan virhe.
+        Muutoin pyydetään AI:ltä historia ja todennäköisyydet,
+        annetaan ne gorn_stats luokalle ja pyydentään ui:tä
+        tulostamaan ne.'''
         if self._ai is None:
             print("Virhe! Tilastoja ei vielä ole.\n")
             return

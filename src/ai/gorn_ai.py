@@ -5,7 +5,7 @@ class GornAi:
     '''GornAi käyttää eripituisia Markovin ketjuja ennakoidakseen pelaajan siirrot.
     Se seuraa eri pituisten ketjujen menestystä ja vaihtaa sitä sen mukaan, mikä
     parhaiten menestyy.'''
-    def __init__(self, mode = False, models = 6, focus = -4):
+    def __init__(self, mode = False, models = 5, focus = -4):
         if mode:
             self._selection = {"k":0, "s":2, "p":1, "l":4, "v":3}
             self._choices = ['k', 'p', 's', 'l', 'v']
