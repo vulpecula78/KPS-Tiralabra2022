@@ -26,6 +26,7 @@
 -----
 ### Dokumentaatio:
 
+- [Käyttöohje](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/kayttoohje.md)
 - [Määrittelydokumentti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/maarittelydokumentti.md)
 - [Toteutusdokumentti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/toteutusdokumentti.md)
 - [Testausdokumentti](https://github.com/vulpecula78/KPS-Tiralabra2022/blob/main/dokumentaatio/testausdokumentti.md)

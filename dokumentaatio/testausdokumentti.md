@@ -42,7 +42,7 @@ Koodin laatua tarkastetaan ja ylläpidetään pylintin avulla. Viimeisin pylint 
     - tietokone: 34,83%
     - tasapeli:  29,76%
 * 1.asteen Markov, kun pelejä 7 ja keskimääräinen pituus 59 kierrosta:
-*    - pelaaja:   32,03%
+    - pelaaja:   32,03%
     - tietokone: 33,36%
     - tasapeli:  34,61%
 
@@ -57,7 +57,7 @@ Jakaumat ovat eri pelimalleilla melko samanlaisia, mutta Markovin ketjua käytt�
     - tietokone: 42%
     - tasapeli:  21%
 * 1.asteen Markov, kun pelejä 3 ja keskimääräinen pituus 85 kierrosta:     
-*   - pelaaja:   41%
+    - pelaaja:   41%
     - tietokone: 45%
     - tasapeli:  14%
 
